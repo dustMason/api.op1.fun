@@ -22,6 +22,8 @@ curl -X GET \
 
 ### `https://api.op1.fun/v1/users/:username/patches`
 
+Method: GET
+
 Returns user data and list of related Pack and Patch ids. If `:username` matches
 the authenticated user, private packs and patches will be included.
 
@@ -57,7 +59,11 @@ the authenticated user, private packs and patches will be included.
 }
 ```
 
+-----
+
 ### `https://api.op1.fun/v1/users/:username/patches`
+
+Method: GET
 
 Returns all public patches for the given user. If `:username` matches the
 authenticated user, private patches are also included.
@@ -88,7 +94,11 @@ authenticated user, private patches are also included.
 }
 ```
 
+-----
+
 ### `https://api.op1.fun/v1/users/:username/packs`
+
+Method: GET
 
 Returns all public packs for the given user. If `:username` matches the
 authenticated user, private packs are also included.
@@ -130,7 +140,11 @@ authenticated user, private packs are also included.
 }
 ```
 
+-----
+
 ### `https://api.op1.fun/v1/users/:username/packs/:pack_id`
+
+Method: GET
 
 Returns data on the given pack and includes data for all associated patches. if `:username` matches the authenticated user, this may be a private pack.
 
@@ -205,7 +219,11 @@ Returns data on the given pack and includes data for all associated patches. if 
 }
 ```
 
+-----
+
 ### `https://api.op1.fun/v1/users/:username/packs/:pack_id/download`
+
+Method: GET
 
 Generates a zip file for the given pack, then returns a publicly accessible URL
 for the generated file. This will be a slow request for large packs, and will
@@ -220,7 +238,11 @@ time out after 60 seconds.
 }
 ```
 
+-----
+
 ### `https://api.op1.fun/v1/users/:username/patches/:patch_id`
+
+Method: GET
 
 Returns data on the given patch. if `:username` matches the authenticated user,
 this may be a private patch.
