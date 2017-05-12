@@ -1,8 +1,8 @@
 # op1.fun API
 
-https://op1.fun has an API intended to allow users to upload and download packs
-and patches using 3rd party apps and tools. It's responses are modeled on the
-[JSON API](http://jsonapi.org) spec.
+https://op1.fun has an API to allow users to upload and download packs and
+patches using 3rd party apps and tools. It's responses are modeled on the [JSON
+API](http://jsonapi.org) spec.
 
 ## Authentication
 
