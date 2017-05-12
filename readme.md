@@ -17,13 +17,13 @@ Example request:
 ```shell
 curl -X GET \
   https://api.op1.fun/v1/users/dustmason/packs \
-  -H 'x-user-email: email@example.com' \
-  -H 'x-user-token: xxxxxxxxxxxxxx'
+  -H 'X-User-Email: email@example.com' \
+  -H 'X-User-Token: xxxxxxxxxxxxxx'
 ```
 
 ## Endpoints
 
-### `https://api.op1.fun/v1/users/:username/patches`
+### `https://api.op1.fun/v1/users/:username`
 
 Method: GET
 
@@ -91,6 +91,74 @@ authenticated user, private patches are also included.
         "self": "https://api.op1.fun/v1/users/dustmason/patches/rlnd_tr808",
         "file": "https://op1fun.s3.amazonaws.com/uploads/patch/7/RLND_TR808.aif",
         "preview": "https://op1fun.s3.amazonaws.com/uploads/patch/7/RLND_TR808.aif.mp3"
+      }
+    }
+  ]
+}
+```
+
+-----
+
+### `https://api.op1.fun/v1/patches`
+
+Method: POST
+
+Creates a new patch belonging to the authenticated user. Content-Type must be
+`application/json` and file content must be Base64 encoded with this prefix:
+
+```
+data:audio/x-aiff;base64,
+```
+
+**Example Request**
+
+```shell
+curl -X POST \
+  https://api.op1.fun/v1/patches \
+  -H 'accept: application/json' \
+  -H 'content-type: application/json' \
+  -H 'x-user-email: user@example.com' \
+  -H 'x-user-token: xxxxxxxxxxxxxxxxxxxx' \
+  -d '{
+    "data": {
+      "type": "patches",
+      "attributes": {
+        "name": "New Patch",
+        "public": true,
+        "description": "This is my patch",
+        "license": "CC BY",
+        "file": "data:audio/x-aiff;base64,<BASE64_ENCODED_FILE>"
+        
+      }
+    }
+  }'
+```
+
+Replace `<BASE64_ENCODED_FILE>` with a Base64 encoded patch AIFF file. Note that
+any newline characters must be represented as `\n` as per the JSON spec.
+
+License may be blank or one of: "CC BY", "CC BY-SA", "CC BY-NC", "CC BY-ND"
+
+**Example Response**
+
+```json
+{
+  "data": [
+    {
+      "id": "new-patch",
+      "type": "patches",
+      "attributes": {
+        "name": "New Patch",
+        "public": true,
+        "patch-type": "drum",
+        "license": "CC BY",
+        "description": "This is my patch",
+        "user-id": "dustmason"
+      },
+      "links": {
+        "self": "https://api.op1.fun/v1/users/dustmason/patches/new-patch",
+        "file": "https://op1fun.s3.amazonaws.com/uploads/patch/7/new-patch.aif",
+        "preview": "https://op1fun.s3.amazonaws.com/uploads/patch/7/new-patch.aif.mp3"
       }
     }
   ]
