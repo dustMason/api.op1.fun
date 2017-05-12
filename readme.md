@@ -4,6 +4,9 @@ https://op1.fun has an API to allow users to upload and download packs and
 patches using 3rd party apps and tools. It's responses are modeled on the [JSON
 API](http://jsonapi.org) spec.
 
+Please [contact me](mailto:jordan@op1.fun) if you plan to build an API client of
+any kind!
+
 ## Authentication
 
 All requests must include two headers, `X-User-Token` and `X-User-Email`. The
