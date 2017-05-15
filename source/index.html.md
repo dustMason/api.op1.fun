@@ -1,4 +1,13 @@
-# op1.fun API
+---
+title: api.op1.fun
+
+toc_footers:
+  - <a href='https://op1.fun'>op1.fun</a>
+  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+
+---
+
+# Introduction
 
 https://op1.fun has an API to allow users to upload and download packs and
 patches using 3rd party apps and tools. It's responses are modeled on the [JSON
@@ -7,30 +16,21 @@ API](http://jsonapi.org) spec.
 Please [contact me](mailto:jordan@op1.fun) if you plan to build an API client of
 any kind!
 
-## Authentication
+# Authentication
 
 All requests must include two headers, `X-User-Token` and `X-User-Email`. The
 token is obtained by the user on their profile page on the site.
 
-Example request:
+# User
 
-```shell
-curl -X GET \
-  https://api.op1.fun/v1/users/dustmason/packs \
-  -H 'X-User-Email: email@example.com' \
-  -H 'X-User-Token: xxxxxxxxxxxxxx'
-```
+## Get User
 
-## Endpoints
-
-### `https://api.op1.fun/v1/users/:username`
-
-Method: GET
+`GET https://api.op1.fun/v1/users/:username`
 
 Returns user data and list of related Pack and Patch ids. If `:username` matches
 the authenticated user, private packs and patches will be included.
 
-**Example Response**
+> Example Response
 
 ```json
 {
@@ -62,16 +62,16 @@ the authenticated user, private packs and patches will be included.
 }
 ```
 
------
+# Patches
 
-### `https://api.op1.fun/v1/users/:username/patches`
+## Get Patches
 
-Method: GET
+`GET https://api.op1.fun/v1/users/:username/patches`
 
 Returns all public patches for the given user. If `:username` matches the
 authenticated user, private patches are also included.
 
-**Example Response**
+> Example Response
 
 ```json
 {
@@ -97,20 +97,47 @@ authenticated user, private patches are also included.
 }
 ```
 
------
+## Get Patch
 
-### `https://api.op1.fun/v1/patches`
+`GET https://api.op1.fun/v1/users/:username/patches/:patch_id`
 
-Method: POST
+Returns data on the given patch. if `:username` matches the authenticated user,
+this may be a private patch.
+
+> Example Response
+
+```json
+{
+  "data": {
+    "id": "cr8000",
+    "type": "patches",
+    "attributes": {
+      "name": "CR8000",
+      "public": true,
+      "patch-type": "drum",
+      "license": null,
+      "description": "One of my favorite classic drum machines.",
+      "user-id": "dustmason"
+    },
+    "links": {
+      "self": "https://api.op1.fun/v1/users/dustmason/patches/cr8000",
+      "file": "https://op1fun.s3.amazonaws.com/uploads/patch/6/CR8000.aif",
+      "preview": "https://op1fun.s3.amazonaws.com/uploads/patch/6/CR8000.aif.mp3"
+    }
+  }
+}
+```
+
+## Create Patch
+
+`POST https://api.op1.fun/v1/patches`
 
 Creates a new patch belonging to the authenticated user. Content-Type must be
 `application/json` and file content must be Base64 encoded with this prefix:
 
-```
-data:audio/x-aiff;base64,
-```
+`data:audio/x-aiff;base64,`
 
-**Example Request**
+> Example Request
 
 ```shell
 curl -X POST \
@@ -139,7 +166,7 @@ any newline characters must be represented as `\n` as per the JSON spec.
 
 License may be blank or one of: "CC BY", "CC BY-SA", "CC BY-NC", "CC BY-ND"
 
-**Example Response**
+> Example Response
 
 ```json
 {
@@ -165,16 +192,16 @@ License may be blank or one of: "CC BY", "CC BY-SA", "CC BY-NC", "CC BY-ND"
 }
 ```
 
------
+# Packs
 
-### `https://api.op1.fun/v1/users/:username/packs`
+## Get Packs
 
-Method: GET
+`GET https://api.op1.fun/v1/users/:username/packs`
 
 Returns all public packs for the given user. If `:username` matches the
 authenticated user, private packs are also included.
 
-**Example Response**
+> Example Response
 
 ```json
 {
@@ -211,15 +238,13 @@ authenticated user, private packs are also included.
 }
 ```
 
------
+## Get Pack
 
-### `https://api.op1.fun/v1/users/:username/packs/:pack_id`
-
-Method: GET
+`GET https://api.op1.fun/v1/users/:username/packs/:pack_id`
 
 Returns data on the given pack and includes data for all associated patches. if `:username` matches the authenticated user, this may be a private pack.
 
-**Example Response**
+> Example Response
 
 ```json
 {
@@ -290,54 +315,19 @@ Returns data on the given pack and includes data for all associated patches. if 
 }
 ```
 
------
+## Download Pack
 
-### `https://api.op1.fun/v1/users/:username/packs/:pack_id/download`
-
-Method: GET
+`GET https://api.op1.fun/v1/users/:username/packs/:pack_id/download`
 
 Generates a zip file for the given pack, then returns a publicly accessible URL
 for the generated file. This will be a slow request for large packs, and will
 time out after 60 seconds.
 
-**Example Response**
+> Example Response
 
 ```json
 {
   "url": "https://op1fun.s3.amazonaws.com/pack/92/micropops.zip",
   "success": true
-}
-```
-
------
-
-### `https://api.op1.fun/v1/users/:username/patches/:patch_id`
-
-Method: GET
-
-Returns data on the given patch. if `:username` matches the authenticated user,
-this may be a private patch.
-
-**Example Response**
-
-```json
-{
-  "data": {
-    "id": "cr8000",
-    "type": "patches",
-    "attributes": {
-      "name": "CR8000",
-      "public": true,
-      "patch-type": "drum",
-      "license": null,
-      "description": "One of my favorite classic drum machines.",
-      "user-id": "dustmason"
-    },
-    "links": {
-      "self": "https://api.op1.fun/v1/users/dustmason/patches/cr8000",
-      "file": "https://op1fun.s3.amazonaws.com/uploads/patch/6/CR8000.aif",
-      "preview": "https://op1fun.s3.amazonaws.com/uploads/patch/6/CR8000.aif.mp3"
-    }
-  }
 }
 ```
