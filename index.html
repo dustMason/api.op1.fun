@@ -1,0 +1,544 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>api.op1.fun</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <h1>api.op1.fun</h1>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://op1.fun'>op1.fun</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>https://op1.fun has an API to allow users to upload and download packs and
+patches using 3rd party apps and tools. It&rsquo;s responses are modeled on the <a href="http://jsonapi.org">JSON
+API</a> spec.</p>
+
+<p>Please <a href="mailto:jordan@op1.fun">contact me</a> if you plan to build an API client of
+any kind!</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>All requests must include two headers, <code class="prettyprint">X-User-Token</code> and <code class="prettyprint">X-User-Email</code>. The
+token is obtained by the user on their profile page on the site.</p>
+
+<h1 id="user">User</h1>
+
+<h2 id="get-user">Get User</h2>
+
+<p><code class="prettyprint">GET https://api.op1.fun/v1/users/:username</code></p>
+
+<p>Returns user data and list of related Pack and Patch ids. If <code class="prettyprint">:username</code> matches
+the authenticated user, private packs and patches will be included.</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dustmason"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dustmason"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"packs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"konapulse-pack"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"packs"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"patches"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"patches"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/patches"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"packs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/packs"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h1 id="patches">Patches</h1>
+
+<h2 id="get-patches">Get Patches</h2>
+
+<p><code class="prettyprint">GET https://api.op1.fun/v1/users/:username/patches</code></p>
+
+<p>Returns all public patches for the given user. If <code class="prettyprint">:username</code> matches the
+authenticated user, private patches are also included.</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rlnd_tr808"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RLND_TR808"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"patch-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"drum"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another all-time classic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dustmason"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/patches/rlnd_tr808"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/7/RLND_TR808.aif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/7/RLND_TR808.aif.mp3"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="get-patch">Get Patch</h2>
+
+<p><code class="prettyprint">GET https://api.op1.fun/v1/users/:username/patches/:patch_id</code></p>
+
+<p>Returns data on the given patch. if <code class="prettyprint">:username</code> matches the authenticated user,
+this may be a private patch.</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cr8000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CR8000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"patch-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"drum"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One of my favorite classic drum machines."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dustmason"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/patches/cr8000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/6/CR8000.aif"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/6/CR8000.aif.mp3"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="create-patch">Create Patch</h2>
+
+<p><code class="prettyprint">POST https://api.op1.fun/v1/patches</code></p>
+
+<p>Creates a new patch belonging to the authenticated user. Content-Type must be
+<code class="prettyprint">application/json</code> and file content must be Base64 encoded with this prefix:</p>
+
+<p><code class="prettyprint">data:audio/x-aiff;base64,</code></p>
+
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  https://api.op1.fun/v1/patches <span class="se">\</span>
+  -H <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'x-user-email: user@example.com'</span> <span class="se">\</span>
+  -H <span class="s1">'x-user-token: xxxxxxxxxxxxxxxxxxxx'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "data": {
+      "type": "patches",
+      "attributes": {
+        "name": "My Patch",
+        "public": true,
+        "description": "This is my patch",
+        "license": "CC BY",
+        "file": "data:audio/x-aiff;base64,&lt;BASE64_ENCODED_FILE&gt;."
+
+      }
+    }
+  }'</span>
+</code></pre>
+<p>Replace <code class="prettyprint">&lt;BASE64_ENCODED_FILE&gt;</code> with a Base64 encoded patch AIFF file. Note that
+any newline characters must be represented as <code class="prettyprint">\n</code> as per the JSON spec.</p>
+
+<p>License may be blank or one of: &ldquo;CC BY&rdquo;, &ldquo;CC BY-SA&rdquo;, &ldquo;CC BY-NC&rdquo;, &ldquo;CC BY-ND&rdquo;</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new-patch"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Patch"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"patch-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"drum"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CC BY"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is my patch"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dustmason"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/patches/new-patch"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/7/new-patch.aif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/7/new-patch.aif.mp3"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h1 id="packs">Packs</h1>
+
+<h2 id="get-packs">Get Packs</h2>
+
+<p><code class="prettyprint">GET https://api.op1.fun/v1/users/:username/packs</code></p>
+
+<p>Returns all public packs for the given user. If <code class="prettyprint">:username</code> matches the
+authenticated user, private packs are also included.</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"micropops"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"packs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Micropops"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A bunch of my favorite old school drum machines"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dustmason"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"patches"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"soundmaster_sr88"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cr8000"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/packs/micropops"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"download"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/packs/micropops/download"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="get-pack">Get Pack</h2>
+
+<p><code class="prettyprint">GET https://api.op1.fun/v1/users/:username/packs/:pack_id</code></p>
+
+<p>Returns data on the given pack and includes data for all associated patches. if <code class="prettyprint">:username</code> matches the authenticated user, this may be a private pack.</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"micropops"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"packs"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Micropops"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A bunch of my favorite old school drum machines"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dustmason"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"patches"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"soundmaster_sr88"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cr8000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/packs/micropops"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"download"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/packs/micropops/download"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"included"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"soundmaster_sr88"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SoundMaster_SR88"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"patch-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"drum"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kb6-de"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/kb6-de/patches/soundmaster_sr88"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/2316/SoundMaster_SR88.aif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/2316/SoundMaster_SR88.aif.mp3"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cr8000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patches"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CR8000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"patch-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"drum"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One of my favorite classic drum machines."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dustmason"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.op1.fun/v1/users/dustmason/patches/cr8000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/6/CR8000.aif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/uploads/patch/6/CR8000.aif.mp3"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="download-pack">Download Pack</h2>
+
+<p><code class="prettyprint">GET https://api.op1.fun/v1/users/:username/packs/:pack_id/download</code></p>
+
+<p>Generates a zip file for the given pack, then returns a publicly accessible URL
+for the generated file. This will be a slow request for large packs, and will
+time out after 60 seconds.</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://op1fun.s3.amazonaws.com/pack/92/micropops.zip"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
