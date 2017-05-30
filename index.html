@@ -230,11 +230,37 @@ any kind!</p>
 
 <h1 id="authentication">Authentication</h1>
 
-<p>All requests must include two headers, <code class="prettyprint">X-User-Token</code> and <code class="prettyprint">X-User-Email</code>. The
+<p>All requests (expect API token lookup) must include two headers, <code class="prettyprint">X-User-Token</code> and <code class="prettyprint">X-User-Email</code>. The
 token is obtained by the user on their profile page on the site.</p>
 
 <h1 id="user">User</h1>
 
+<h2 id="api-token-lookup">API Token Lookup</h2>
+
+<p><code class="prettyprint">POST https://api.op1.fun/v1/api_token</code></p>
+
+<p>Returns an API token for the authenticated user. Store this token for future
+authenticated API requests.</p>
+
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  https://api.op1.fun/v1/api_token <span class="se">\</span>
+  -H <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "email": "user@example.com",
+    "password": "LongSecurePassword81734"
+  }'</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"api_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V1e5KsxHJBN-gwmjoEzS"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h2 id="get-user">Get User</h2>
 
 <p><code class="prettyprint">GET https://api.op1.fun/v1/users/:username</code></p>
