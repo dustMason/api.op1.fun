@@ -18,10 +18,37 @@ any kind!
 
 # Authentication
 
-All requests must include two headers, `X-User-Token` and `X-User-Email`. The
+All requests (expect API token lookup) must include two headers, `X-User-Token` and `X-User-Email`. The
 token is obtained by the user on their profile page on the site.
 
 # User
+
+## API Token Lookup
+
+`POST https://api.op1.fun/v1/api_token`
+
+Returns an API token for the authenticated user. Store this token for future
+authenticated API requests.
+
+> Example Request
+
+```shell
+curl -X POST \
+  https://api.op1.fun/v1/api_token \
+  -H 'accept: application/json' \
+  -H 'content-type: application/json' \
+  -d '{
+    "email": "user@example.com",
+    "password": "LongSecurePassword81734"
+  }'
+```
+> Example Response
+
+```json
+{
+  "api_token": "V1e5KsxHJBN-gwmjoEzS"
+}
+```
 
 ## Get User
 
